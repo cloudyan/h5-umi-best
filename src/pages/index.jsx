@@ -84,6 +84,12 @@ export default function IndexPage() {
             <button>pull-up demo2</button>
           </a>
         </div>
+        <h3>hooks</h3>
+        <div className="content flex">
+          <a className="btn" href="/hooks/use-reducer/demo1">
+            <button>useReducer demo1</button>
+          </a>
+        </div>
       </div>
     </>
   );
