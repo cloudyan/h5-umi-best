@@ -12,10 +12,10 @@ H5 端 umi 最佳实践
   - [x] useMemo
   - [x] useCallback
   - [x] context
-- [x] 高清支持, 此库不包含
-- [x] oss 支持, 此库不包含
-- [x] sentry 上报接入, 此库不包含
-- [x] 分包优化
+- [ ] 高清支持
+- [ ] oss 支持
+- [ ] sentry 上报接入
+- [ ] 分包优化
 - [ ] 编译优化
 - [ ] lint 代码检查接入
 - [ ] 友好错误页
