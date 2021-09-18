@@ -1,0 +1,7 @@
+{
+  "threshold": 0,
+  "reporters": ["html", "console", "badge"],
+  "ignore": [".umi/**", ".umi-production/**", "**/node_modules/**"],
+  "gitignore": true,
+  "absolute": true
+}

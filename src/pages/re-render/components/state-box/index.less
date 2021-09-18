@@ -1,0 +1,86 @@
+.state-box {
+  position: relative;
+  border: 1px dashed green;
+  padding: 32px 16px 16px;
+
+  .state-mark {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    padding: 0 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: green;
+  }
+  .state-content {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  i {
+    color: green;
+    font-style: normal;
+  }
+  b {
+    overflow: hidden;
+    color: #333;
+    font-weight: bold;
+    margin: 0 16px 0 4px;
+  }
+  &.state-props {
+    border-color: #6020d3;
+    .state-mark {
+      background-color: #6020d3;
+    }
+    b {
+      color: #6020d3;
+    }
+  }
+
+  &.state-state {
+    display: flex;
+    padding: 0;
+    border: 1px dashed #1a8d63;
+    .state-mark {
+      position: static;
+      float: left;
+      padding: 0 10px;
+      min-height: 30px;
+      background-color: #c9f8df;
+      color: #1a8d63;
+    }
+    .state-content {
+      overflow: hidden;
+      padding: 0 16px;
+    }
+    i {
+      color: green;
+    }
+  }
+
+  &.state-context {
+    display: flex;
+    padding: 0;
+    border: 1px dashed #cd7527;
+    .state-mark {
+      position: static;
+      float: left;
+      padding: 0 10px;
+      min-height: 30px;
+      background-color: #feefbe;
+      color: #cd7527;
+    }
+    .state-content {
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 0 16px;
+    }
+    i {
+      color: #cd7527;
+    }
+  }
+}
