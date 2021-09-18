@@ -69,6 +69,10 @@ export default defineConfig({
     },
     { path: '/pull/pull-up-demo1', component: '@/pages/pull/pull-up-demo1' },
     { path: '/pull/pull-up-demo2', component: '@/pages/pull/pull-up-demo2' },
+    {
+      path: '/hooks/use-reducer/demo1',
+      component: '@/pages/hooks/use-reducer/demo1',
+    },
     { path: '/*', component: '@/pages/error/404' },
   ],
 
