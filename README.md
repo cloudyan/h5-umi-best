@@ -12,9 +12,12 @@ H5 端 umi 最佳实践
   - [x] useMemo
   - [x] useCallback
   - [x] context
-- [ ] 高清支持
-- [ ] oss 支持
-- [ ] sentry 上报接入
+- [ ] 请求封装方案
+- [x] 高清支持
+  - 可使用 postcss-px-to-viewport
+  - 或 postcss-plugin-px2rem
+- [x] oss 支持
+- [x] sentry 上报接入
 - [ ] 分包优化
 - [ ] 编译优化
 - [ ] lint 代码检查接入

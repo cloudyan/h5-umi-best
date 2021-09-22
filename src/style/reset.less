@@ -1,0 +1,85 @@
+@import './normalize.css';
+
+// http://stackoverflow.com/a/13611748/3040605
+// 可以单独设置特定字符（如数字）的字体
+// @font-face {
+//   font-family: "Helvetica Neue For Number";
+//   src: local("Helvetica Neue");
+//   unicode-range: U+30-39;
+// }
+
+// Reset the box-sizing
+// html {
+* {
+  // remove tap highlight color for mobile safari
+  // 这个属性只用于iOS (iPhone和iPad)。当你点击一个链接或者通过Javascript定义的可点击元素的时候，它就会出现一个半透明的灰色背景。
+  // 要重设这个表现，你可以设置-webkit-tap-highlight-color为任何颜色。
+  // 想要禁用这个高亮，设置颜色的alpha值为0即可。
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  user-select: none;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+/**
+ * 1. http://usabilitypost.com/2012/11/15/w-optimizelegibility-on-mobile-devices/
+ * 2. http://maxvoltar.com/archive/-webkit-font-smoothing
+ *    设置 smoothing 使页面上的字体抗锯齿，更清晰舒服，特别针对图标文字
+ * NOTE: http://usabilitypost.com/2012/11/05/stop-fixing-font-smoothing/
+ * 3. http://maximilianhoffmann.com/posts/better-font-rendering-on-osx
+ *    http://jaydenseric.com/blog/css-font-smoothing-for-firefox-mac
+ * 4. http://blogs.msdn.com/b/ie_cn/archive/2012/01/17/css.aspx
+ */
+body,
+button,
+input,
+select,
+optgroup,
+textarea {
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  // 纤细字体
+  text-rendering: optimizeLegibility; // 1 当绘制文本时，浏览器会侧重文本的可读性（清晰度），而不是渲染速度和几何精度
+  -webkit-font-smoothing: antialiased; // 2 抗锯齿
+}
+
+html,
+body,
+#app {
+  // vh 在 ios safari 和 chrome对高度的渲染有问题，有地址栏和操作区，非满屏会出现滚动条（微信没问题）
+  // 改为 100% 后没此问题了
+  height: 100%;
+}
+
+// placeholder并不支持padding和height值，在Android手机原生浏览器里面如果设置了line-height的值，比如设为line-height:32px
+// 在Android自带浏览器、百度手机浏览器、小米自带浏览器上出现图一的问题（占位符靠顶部）。uc/qq正常
+// 解决办法：把line-height设置为line-height:normal(或者不设置行高问题，只设置padding即可)
+// 参看：
+// http://stackoverflow.com/questions/4919680/html5-placeholder-css-padding
+// http://caibaojian.com/html5-placeholder-discuzz.html
+input {
+  line-height: normal !important;
+  outline: none !important;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  vertical-align: middle;
+}
+
+// FIXED: 修复部分手机浏览器 fixed 抖动问题（安卓 UC，360等，在地址栏存在时，滚动页面，则 fixed 定位元素会抖动），
+// http://www.chenyudong.com/archives/chrome-position-fixed-shake.html
+.v-fixed {
+  transform: translateZ(0);
+  // NOTE: fixed 布局不能有下面这个属性，会影响 fixed 正常显示
+  // transform: translate3d(0, 0, 0);
+}
