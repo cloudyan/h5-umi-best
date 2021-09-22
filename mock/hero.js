@@ -13,7 +13,7 @@ export default {
     res.send({
       code: 0,
       message: 'success',
-      data: hero,
+      data: hero, // TODO: 如果不是这个结构，报错?
     });
   },
   '/apimock/item.json': item,
