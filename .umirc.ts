@@ -18,7 +18,14 @@ export default defineConfig({
   routes: [
     { path: '/', component: '@/pages/index' },
     { path: '/data-flow/dva', component: '@/pages/data-flow/dva/index' },
-    { path: '/data-flow/hooks', component: '@/pages/data-flow/hooks/index' },
+    {
+      path: '/data-flow/hooks/demo1',
+      component: '@/pages/data-flow/hooks/demo1',
+    },
+    {
+      path: '/data-flow/hooks/demo2',
+      component: '@/pages/data-flow/hooks/demo2',
+    },
     {
       path: '/re-render/list/demo1',
       component: '@/pages/re-render/1.list/demo1',
