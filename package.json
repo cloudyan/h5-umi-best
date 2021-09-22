@@ -5,6 +5,7 @@
   "scripts": {
     "start": "umi dev",
     "build": "umi build",
+    "server": "node ./server/server.js",
     "check": "npx jscpd",
     "postinstall": "umi generate tmp"
   },
