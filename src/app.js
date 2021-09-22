@@ -35,7 +35,7 @@ export const request = {
       };
     },
   },
-  // errorHandler,
+  errorHandler,
   middlewares: [
     // logger,
   ],
