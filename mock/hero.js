@@ -10,11 +10,12 @@ export default {
     const hero = herolist.filter(
       (item) => item.ename === parseInt(ename, 10),
     )[0];
-    res.send({
-      code: 0,
-      message: 'success',
-      data: hero, // TODO: 如果不是这个结构，报错?
-    });
+    res.send(hero);
+    // res.send({
+    //   code: 0,
+    //   message: 'success',
+    //   data: hero,
+    // });
   },
   '/apimock/item.json': item,
   '/apimock/summoner.json': summoner,

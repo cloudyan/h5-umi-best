@@ -12,8 +12,11 @@ export default function IndexPage() {
           <a className="btn" href="/data-flow/dva">
             <button>dva demo</button>
           </a>
-          <a className="btn" href="/data-flow/hooks">
-            <button>hooks demo</button>
+          <a className="btn" href="/data-flow/hooks/demo1">
+            <button>hooks demo1</button>
+          </a>
+          <a className="btn" href="/data-flow/hooks/demo2">
+            <button>hooks demo2</button>
           </a>
         </div>
         <h3>重新渲染机制</h3>

@@ -27,7 +27,8 @@ export const request = {
       // 该配置只是用于错误处理，不会影响最终传递给页面的数据格式。
       console.log('adaptor:', res);
       return {
-        success: res.code === config.successCode,
+        // success: res.code === config.successCode, // 业务约定，若无，写死 true
+        success: true,
         data: res.data,
         errorCode: res.code,
         errorMessage: res.message,
