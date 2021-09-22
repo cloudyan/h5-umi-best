@@ -11,7 +11,7 @@ const Demo1 = (props) => {
     return () => {
       clearInterval(timer);
     };
-  }, [step]); // 改版 step，timer 需要被清除，实现不优雅
+  }, [step]); // 改变 step，timer 需要被清除，实现不优雅
 
   const changeStep = (c) => (e) => {
     setStep((v) => v + c);

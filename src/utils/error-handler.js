@@ -1,4 +1,4 @@
-const codeMessage = {
+const codeMap = {
   200: '服务器成功返回请求的数据。',
   201: '新建或修改数据成功。',
   202: '一个请求已经进入后台排队（异步任务）。',
@@ -16,25 +16,29 @@ const codeMessage = {
   504: '网关超时。',
 };
 
-// 集中处理错误
+// 集中处理错误，响应总共分为以下类型
+// http 响应成功
+//      2xx 为 http 状态码成功     // 1
+//      非2xx 为 http 状态码异常    // 2
+// http 响应失败，超时或被取消中断等  // 3
+// 代码执行逻辑错误，被 reject       // 4
 const errorHandler = (error) => {
-  if (error.name === 'BizError') {
-    console.log(`请求错误 ${error.data.code} ${error.data.msg}`);
-    // notification.error({
-    //   message: `请求错误 ${error.data.code}`,
-    //   description: error.data.msg,
-    // });
-    return error.data.code;
+  if (error.response) {
+    // 请求已发送但服务端返回状态码非 2xx 的响应
+    console.log(error.response.status);
+    console.log(error.response.headers);
+    console.log(error.data);
+    console.log(error.request);
+    console.log(codeMap[error.data.status]);
+  } else {
+    // 请求初始化时出错或者没有响应返回的异常
+    console.log(error.message);
   }
-  const { response } = error;
-  const errortext = codeMessage[response.status] || response.statusText;
-  const { status, url } = response;
 
-  console.log(`请求错误 ${status}: ${url}`);
-  // notification.error({
-  //   message: `请求错误 ${status}: ${url}`,
-  //   description: errortext,
-  // });
+  throw error; // 如果throw. 错误将继续抛出.
+
+  // 如果return, 则将值作为返回. 'return;' 相当于return undefined, 在处理结果时判断response是否有值即可.
+  // return {some: 'data'};
 };
 
 export default errorHandler;
