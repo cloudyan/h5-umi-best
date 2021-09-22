@@ -4,7 +4,7 @@ import './index.less';
 export default function IndexPage() {
   return (
     <>
-      <div className="page-index">
+      <div className="page-demo page-index">
         <div className="myfont">这个是数字 123455</div>
         <h1 className="title">Page index</h1>
         <h3>数据流方案</h3>

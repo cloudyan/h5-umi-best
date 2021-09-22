@@ -93,7 +93,7 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
-  // antd: false, // 这个引入 antd
+  antd: false, // 这个引入 antd
   dva: {
     immer: true,
     hmr: false,
@@ -108,7 +108,35 @@ export default defineConfig({
 
   // sentry: {},
 
+  chunks: ['vendors', 'umi', 'styles'],
   chainWebpack(config) {
+    // 分包优化
+    config.merge({
+      optimization: {
+        splitChunks: {
+          // chunks: 'all',
+          automaticNameDelimiter: '.',
+          minSize: 20000,
+          cacheGroups: {
+            styles: {
+              // chunks: 'async',
+              name: 'styles',
+              test: /\.(css|less)$/,
+              minChunks: 1,
+              minSize: 0,
+              priority: 30,
+            },
+            vendors: {
+              chunks: 'all',
+              name: `vendors`,
+              test: /[\\/]node_modules[\\/](@umijs\/babel-plugin-lock-core-js-3|history-with-query|react-is|react-dom|react-router|react-router-dom|react|react-helmet|whatwg-fetch|redux|react-redux|dva|connected-react-router|umi-request|dva-immer|dva-core|@umijs|scheduler|object-assign|react-side-effect|react-fast-compare|prop-types)[\\/]/,
+              priority: 10,
+            },
+          },
+        },
+      },
+    });
+
     // otf 字体，可通过umi webpack 查看已有webpack配置
     config.module
       .rule('fonts')

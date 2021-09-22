@@ -1,0 +1,231 @@
+// built-in 内置样式
+
+.ck-clearfix::after {
+  display: block;
+  clear: both;
+  height: 0;
+  visibility: hidden;
+  content: '';
+  zoom: 1;
+}
+
+.ck-hidden {
+  display: none !important;
+}
+
+.ck-hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.ck-max-line-1 {
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.ck-max-line-2,
+.ck-max-line-3 {
+  display: -webkit-box;
+  overflow: hidden;
+  line-height: 1.3;
+  white-space: normal;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+}
+
+/* 必须自己设定 max-height 并指定单位，不同字体大小高度不同，这里无法计算max-height */
+.ck-max-line-2 {
+  -webkit-line-clamp: 2;
+
+  /* max-height: 2.6; */
+}
+.ck-max-line-3 {
+  -webkit-line-clamp: 3;
+
+  /* max-height: 3.9; */
+}
+
+[class*='ck-hairline']::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  width: 200%;
+  height: 200%;
+  border: 0 solid currentColor;
+  border-radius: inherit;
+  transform: scale(0.5);
+  transform-origin: right bottom;
+  content: ' ';
+  pointer-events: none;
+  // border: 1px solid rgba(0,0,0,.2);
+}
+.light[class*='ck-hairline']::after {
+  border-color: #3f4247;
+}
+.ck-hairline {
+  &,
+  &--top,
+  &--left,
+  &--right,
+  &--bottom,
+  &--border,
+  &--top-bottom {
+    position: relative;
+  }
+  &--top::after {
+    border-top-width: 1px;
+  }
+  &--left::after {
+    border-left-width: 1px;
+  }
+  &--right::after {
+    border-right-width: 1px;
+  }
+  &--bottom::after {
+    border-bottom-width: 1px;
+  }
+  &--top-bottom::after,
+  &-unset--top-bottom::after {
+    border-width: 1px 0;
+  }
+  &--border::after {
+    border-width: 1px;
+  }
+}
+
+.ck-human {
+  position: relative;
+  &::before {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+    left: -10px;
+    content: '';
+    // background: rgba(0,0,0,0.1);
+  }
+}
+
+.round {
+  border-radius: 100%;
+}
+
+.block {
+  display: block;
+  width: 100%;
+}
+
+.fr {
+  float: right;
+}
+.fl {
+  float: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+
+.pr {
+  position: relative;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.B {
+  font-weight: bold;
+}
+
+.f12 {
+  font-size: 12px;
+}
+.f11 {
+  font-size: 12px;
+  transform: scale(0.91667);
+}
+.f10 {
+  font-size: 12px;
+  transform: scale(0.834);
+}
+.f8 {
+  font-size: 12px;
+  transform: scale(0.75);
+}
+
+.w-100 {
+  width: 100%;
+}
+.h-100 {
+  height: 100%;
+}
+
+.full-100 {
+  width: 100%;
+  height: 100%;
+}
+
+.flex {
+  display: flex;
+}
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+.flex-middle {
+  display: flex;
+  align-items: center;
+}
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flex-v {
+  display: flex;
+  flex-direction: column;
+}
+.flex-v-middle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.flex-1 {
+  flex: 1;
+  overflow: hidden;
+}
+.flex-between {
+  justify-content: space-between;
+}
+.flex-around {
+  justify-content: space-around;
+}
+.flex-middle-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.flex-middle-around {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+.flex-shrink {
+  flex-shrink: 0;
+}
+.flex-grow {
+  flex-grow: 0;
+}
