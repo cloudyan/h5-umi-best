@@ -84,6 +84,10 @@ export default defineConfig({
       path: '/request/demo1',
       component: '@/pages/request/demo1',
     },
+    {
+      path: '/request/demo2',
+      component: '@/pages/request/demo2',
+    },
     { path: '/error/exception', component: '@/pages/error/exception' },
     { path: '/*', component: '@/pages/error/404' },
   ],

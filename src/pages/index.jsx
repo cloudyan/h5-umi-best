@@ -98,6 +98,9 @@ export default function IndexPage() {
           <a className="btn" href="/request/demo1">
             <button>request demo1</button>
           </a>
+          <a className="btn" href="/request/demo2">
+            <button>request demo2</button>
+          </a>
         </div>
       </div>
     </>

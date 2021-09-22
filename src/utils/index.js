@@ -1,5 +1,5 @@
-export const sleep = (time) =>
-  new Promise((resolve) => setTimeout(resolve, time));
+export const sleep = (...rest) =>
+  new Promise((resolve) => setTimeout(resolve, ...rest));
 
 import React, { FC } from 'react';
 import classNames from 'classnames';
