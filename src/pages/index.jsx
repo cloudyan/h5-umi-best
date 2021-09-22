@@ -90,6 +90,12 @@ export default function IndexPage() {
             <button>useReducer demo1</button>
           </a>
         </div>
+        <h3>request</h3>
+        <div className="content flex">
+          <a className="btn" href="/request/demo1">
+            <button>request demo1</button>
+          </a>
+        </div>
       </div>
     </>
   );

@@ -73,6 +73,11 @@ export default defineConfig({
       path: '/hooks/use-reducer/demo1',
       component: '@/pages/hooks/use-reducer/demo1',
     },
+    {
+      path: '/request/demo1',
+      component: '@/pages/request/demo1',
+    },
+    { path: '/error/exception', component: '@/pages/error/exception' },
     { path: '/*', component: '@/pages/error/404' },
   ],
 
