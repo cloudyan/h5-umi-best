@@ -29,54 +29,85 @@ function flow1(code = 0) {
     });
 }
 
-// flow 2
-function flow2(code = 0) {
-  // Promise.resolve({data: 1})
-  // promise.commonResolve.commonReject
-  // promise.commonResolve.customResolve.customReject.commonReject
-  Promise.resolve({
+const resolve = (code) => {
+  return Promise.resolve({
     code,
     message: '',
     data: {},
-  })
-    .then((res) => {
-      res.message += 'commonResolve,';
-      console.log('commonResolve', res);
-      return res;
-    })
-    .then((res) => {
-      res.message += 'customResolve,';
-      console.log('customResolve', res);
-      if (res.code === 0) {
-        return res;
-      }
-      throw res;
-    })
-    .catch((res) => {
-      res.message += 'customReject,';
-      console.log('customReject', res);
-      if (res.code === 1) {
-        // code = 1 使用自定义错误，拦截掉公共错误处理，否则使用公共错误处理
-        console.error('使用自定义错误,不使用公共错误处理', res);
-        return promiseWait;
-      } else if (res.code === 2) {
-        console.error('使用自定义错误,且使用', res);
-      }
-      console.error('公共错误处理', res);
-      throw res;
-    })
-    .then((res) => {
-      res.message += 'customResolveAfter,';
-      console.log('customResolveAfter', res);
-    })
-    .catch((res) => {
-      res.message += 'commonReject,';
-      console.log('commonReject', res);
-    });
+  });
+};
+const commonResolve = (res) => {
+  res.message += 'commonResolve,';
+  console.log('commonResolve', res);
+  return res;
+};
+const customResolve = (res) => {
+  res.message += 'customResolve,';
+  console.log('customResolve', res);
+  if (res.code === 0) {
+    return res;
+  }
+  throw res;
+};
+const customReject = (res) => {
+  res.message += 'customReject,';
+  console.log('customReject', res);
+  if (res.code === 1) {
+    // code = 1 使用自定义错误，拦截掉公共错误处理，否则使用公共错误处理
+    console.error('使用自定义错误,不使用公共错误处理', res);
+    return promiseWait;
+  } else if (res.code === 2) {
+    console.error('使用自定义错误,且使用', res);
+  }
+  console.error('公共错误处理', res);
+  return Promise.reject(res);
+};
+const customResolveAfter = (res) => {
+  res.message += 'customResolveAfter,';
+  console.log('customResolveAfter', res);
+};
+const commonReject = (res) => {
+  res.message += 'commonReject,';
+  console.log('commonReject', res);
+};
+
+// flow 2
+// Promise.resolve({data: 1})
+// Promise.commonResolve.commonReject
+// Promise.commonResolve.customResolve.customReject.customResolveAfter.commonReject
+function flow2(code = 0) {
+  const request = (...rest) => {
+    return resolve(code).then(commonResolve);
+  };
+  request()
+    .then(customResolve)
+    .catch(customReject)
+    .then(customResolveAfter)
+    .catch(commonReject);
 }
 
 // flow 3
-function flow3(code = 0) {}
+// p1 = Promise.commonResolve
+// p2 = p1.customResolve.customReject
+// p3 = p2.customResolveAfter.commonReject
+function flow3(code = 0) {
+  const request = function (...rest) {
+    let r = resolve(code).then(commonResolve);
+
+    // for (let fn of rest) {
+    //   if (typeof fn === 'function') {
+    //     r = r.then(fn)
+    //   }
+    // }
+    return r
+      .then(rest[0])
+      .catch(rest[1])
+      .then(customResolveAfter)
+      .catch(commonReject);
+  };
+
+  request(customResolve, customReject);
+}
 
 const fnObj = {
   flow1,
@@ -84,13 +115,13 @@ const fnObj = {
   flow3,
 };
 export default (props) => {
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
+  let count = 0;
   const changeFlow = (n) => (e) => {
-    setCount((v) => {
-      v = v + 1;
-      fnObj[`flow${n}`](v % 3);
-      return v;
-    });
+    count += 1;
+    fnObj[`flow${n}`](count % 3);
+    // setCount(() => {
+    // });
   };
 
   return (
