@@ -23,6 +23,7 @@ const codeMap = {
 // http 响应失败，超时或被取消中断等  // 3
 // 代码执行逻辑错误，被 reject       // 4
 const errorHandler = (error) => {
+  // console.log('errorHandler', JSON.stringify(error));
   if (error.response) {
     // 请求已发送但服务端返回状态码非 2xx 的响应
     console.log(error.response.status);

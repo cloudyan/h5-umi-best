@@ -109,10 +109,48 @@ function flow3(code = 0) {
   request(customResolve, customReject);
 }
 
+// flow 4
+// request = xxx
+// request.then().catch()
+function flow4(code = 0) {
+  const request = (params) => {
+    return {
+      _task: [],
+      then(fn) {
+        this._task.push({
+          key: 'then',
+          task: fn,
+        });
+        return this;
+      },
+      catch(fn) {
+        this._task.push({
+          key: 'catch',
+          task: fn,
+        });
+        return this;
+      },
+      run() {
+        let r = resolve(params).then(commonResolve);
+
+        for (let item of this._task) {
+          if (typeof item.task === 'function') {
+            r = r[item.key](item.task);
+          }
+        }
+        return r.then(customResolveAfter).catch(commonReject);
+      },
+    };
+  };
+
+  request(code).then(customResolve).catch(customReject).run();
+}
+
 const fnObj = {
   flow1,
   flow2,
   flow3,
+  flow4,
 };
 export default (props) => {
   // const [count, setCount] = useState(0);
@@ -135,6 +173,9 @@ export default (props) => {
         </button>
         <button className="btn" onClick={changeFlow(3)}>
           flow3
+        </button>
+        <button className="btn" onClick={changeFlow(4)}>
+          flow4
         </button>
       </div>
     </div>
