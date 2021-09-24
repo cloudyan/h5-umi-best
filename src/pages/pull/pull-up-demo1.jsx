@@ -79,6 +79,7 @@ export default () => {
         fetchData();
       }
     };
+    // TODO: bind?
     const bind = debounce(onScroll, 100);
     window.addEventListener('scroll', bind, true);
     return () => {
