@@ -29,10 +29,14 @@ export const request = {
       // 该配置只是用于错误处理，不会影响最终传递给页面的数据格式。
       console.log('adaptor:', res);
       return {
-        success: res.code === config.successCode, // 业务约定，若无，不要设为 false
-        // success: true, // 为 false，则抛出错误到 errorHandler 中处理
+        // 业务异常约定，success 只要为 false，就会走 errorHandler 逻辑
+        // 用于处理 响应为 200，但有自定义错误码的情况，比如非 0 code
+        // 且经此处转到 errorHandler 的流程，此时 error.name = 'BizError'
+        // 若无约定，不要设为 false
+        success: true,
+        // success: res.code === config.successCode,
         data: res.data,
-        errorCode: res.code, // 这些自定义 key 用于默认的 errorHandler 处理
+        errorCode: res.code, // 下面这几个自定义 key 用于默认的 errorHandler 处理
         errorMessage: res.message,
         showType: 4,
       };

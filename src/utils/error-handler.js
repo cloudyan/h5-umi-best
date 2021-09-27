@@ -22,12 +22,15 @@ const errTypes = {
   cancel: '网络取消',
 };
 
-// 集中处理错误，响应总共分为以下类型
+// 集中处理错误，响应总共分为以下5 种类型
 // http 响应成功
-//      2xx 为 http 状态码成功     // 1(仅仅这种情况不会走到 errorHandler 里)
-//      非2xx 为 http 状态码异常    // 2
-// http 响应失败，超时或被取消中断等  // 3 // error,
-// 代码执行逻辑错误，被 reject       // 4
+//      2xx 为 http 状态码成功
+//          约定统一格式 code: 0 为业务正常 // 1(仅仅这种情况不会走到 errorHandler 里)
+//          其他情况未业务异常              // 2 约定业务异常标识
+//            {code: 0, message: 'success'}
+//      约定非2xx 为 http 状态码异常  // 3
+// http 响应失败，超时或被取消中断等    // 4 // error,
+// 代码执行逻辑错误，被 reject        // 5
 const errorHandler = (error) => {
   console.log('errorHandler', JSON.stringify(error));
   if (error.response) {
