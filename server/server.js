@@ -25,6 +25,7 @@ http
       res.setHeader('Access-Control-Allow-Credentials', true);
     }
     // res.setHeader('Access-Control-Allow-Origin', '*');
+    // TODO: 如果 304 呢
 
     if (method === 'OPTIONS') {
       res.setHeader('Content-Length', '0');
