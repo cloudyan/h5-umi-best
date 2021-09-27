@@ -19,14 +19,15 @@ export default (props) => {
   const fetchData = () => {
     getDemoApi({
       code,
-      // timeout: 5000, 模拟超时
+      // timeout: 5000, // 模拟超时, 还需要修改 app.js
     })
       .then((res) => {
         console.log(res);
+        // let aa = res.data.aa.a; // 模拟 resolve 之后错误
         setData(res);
       })
       .catch((err) => {
-        console.log(err);
+        console.log('catch', err);
         setData(err);
       });
   };
