@@ -9,7 +9,13 @@
     "server": "node ./server/server.js",
     "jscpd": "jscpd",
     "postinstall": "umi generate tmp",
+    "lint": "npm run lint:js",
+    "lint:js": "cross-env TIMING=1 eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
+    "lint:css": "stylelint 'src/**/*.less' --syntax less",
     "lint:prettier": "prettier --check 'src/**/*'",
+    "lint:fix": "npm run lint:js:fix && npm run lint:css:fix && npm run lint:prettier:fix",
+    "lint:js:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
+    "lint:css:fix": "stylelint --fix 'src/**/*.less' --syntax less",
     "lint:prettier:fix": "prettier -c --write 'src/**/*.{js,jsx,ts,tsx,less,md,json}' && git diff && prettier --version"
   },
   "gitHooks": {
@@ -33,6 +39,7 @@
     "umi-request": "1.4.0"
   },
   "devDependencies": {
+    "@deepjs/lint": "0.0.9",
     "@jscpd/badge-reporter": "3.3.23",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",

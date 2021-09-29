@@ -6,8 +6,8 @@ export default () => {
   const [userId, setUserId] = useState(105);
   const [data, setData] = useState({});
 
-  let error = false;
-  let loading = false;
+  const error = false;
+  const loading = false;
 
   const fetchData = () => {
     getHeroDetails({

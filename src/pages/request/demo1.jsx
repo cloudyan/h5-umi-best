@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import { getDemoApi } from './service';
 
 function getUrlParam(name) {
-  const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
-  const arr = location.search.substr(1).match(reg) || [];
-  return typeof arr[2] === 'undefined' ? void 0 : decodeURIComponent(arr[2]);
+  const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`);
+  const arr = window.location.search.substr(1).match(reg) || [];
+  if (typeof arr[2] !== 'undefined') {
+    return decodeURIComponent(arr[2]);
+  }
 }
 
 // https://ahooks.js.org/zh-CN/hooks/async
@@ -13,8 +15,8 @@ export default (props) => {
   const [data, setData] = useState({});
 
   // const code =
-  let error = false;
-  let loading = false;
+  const error = false;
+  const loading = false;
 
   const fetchData = () => {
     getDemoApi({

@@ -25,13 +25,13 @@ const UseMemoDemo1 = (props) => {
   const changeName = (e) => {
     setUser((val) => {
       const name = val.name === 'Alex' ? 'Tom' : 'Alex';
-      return Object.assign({}, val, { name });
+      return { ...val, name };
     });
   };
   const changeRole = (e) => {
     setUser((val) => {
       const role = val.role === 'Admin' ? 'Default' : 'Admin';
-      return Object.assign({}, val, { role });
+      return { ...val, role };
     });
   };
 
@@ -78,13 +78,13 @@ const UseMemoDemo2 = (props) => {
   const changeName = (e) => {
     setUser((val) => {
       const name = val.name === 'Alex' ? 'Tom' : 'Alex';
-      return Object.assign({}, val, { name });
+      return { ...val, name };
     });
   };
   const changeRole = (e) => {
     setUser((val) => {
       const role = val.role === 'Admin' ? 'Default' : 'Admin';
-      return Object.assign({}, val, { role });
+      return { ...val, role };
     });
   };
 

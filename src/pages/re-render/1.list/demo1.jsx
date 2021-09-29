@@ -26,23 +26,19 @@ const Parent1 = () => {
   ]);
 
   const onChange = (id, value) => {
-    const temp = items.map((item, index) => {
-      return index !== id ? item : { value };
-    });
+    const temp = items.map((item, index) => (index !== id ? item : { value }));
     return setItems(temp);
   };
 
-  const itemsMap = items.map((item, index) => {
-    return (
-      <Item
-        key={index}
-        id={index}
-        value={item.value}
-        // 这里如果使用匿名函数，在每次渲染时总会得到一个新的引用
-        onChange={onChange}
-      ></Item>
-    );
-  });
+  const itemsMap = items.map((item, index) => (
+    <Item
+      key={index}
+      id={index}
+      value={item.value}
+      // 这里如果使用匿名函数，在每次渲染时总会得到一个新的引用
+      onChange={onChange}
+    ></Item>
+  ));
 
   return (
     <div className="page-re-render-list">
@@ -75,22 +71,13 @@ const Parent2 = () => {
 
   const onChange = useCallback((id, value) => {
     setItems((prevItems) =>
-      prevItems.map((item, index) => {
-        return index !== id ? item : { value: value };
-      }),
+      prevItems.map((item, index) => (index !== id ? item : { value })),
     );
   }, []); // No dependencies
 
-  const itemsMap = items.map((item, index) => {
-    return (
-      <Item
-        key={index}
-        id={index}
-        value={item.value}
-        onChange={onChange}
-      ></Item>
-    );
-  });
+  const itemsMap = items.map((item, index) => (
+    <Item key={index} id={index} value={item.value} onChange={onChange}></Item>
+  ));
 
   return (
     <div className="page-re-render-list">
@@ -104,12 +91,10 @@ const Parent2 = () => {
   );
 };
 
-export default (props) => {
-  return (
-    <div className="page-demo page-re-render-list">
-      <Parent1 />
-      <br />
-      <Parent2 />
-    </div>
-  );
-};
+export default (props) => (
+  <div className="page-demo page-re-render-list">
+    <Parent1 />
+    <br />
+    <Parent2 />
+  </div>
+);

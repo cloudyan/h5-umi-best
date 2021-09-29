@@ -5,34 +5,27 @@ import Child from './child';
 import './index.less';
 
 // 存在问题
-const MemoChild = memo((props) => {
-  return (
-    <Child title="memo(Child)" value={`options={options}`}>
-      <br />
-      <StateBox
-        type="props"
-        name="options"
-        value={JSON.stringify(props.options)}
-      />
-    </Child>
-  );
-});
+const MemoChild = memo((props) => (
+  <Child title="memo(Child)" value={`options={options}`}>
+    <br />
+    <StateBox
+      type="props"
+      name="options"
+      value={JSON.stringify(props.options)}
+    />
+  </Child>
+));
 const UseMemoDemo1 = (props) => {
   const [user, setUser] = useState({ name: 'Alex', role: 'Admin' });
 
   const changeName = (e) => {
-    setUser((val) => {
-      return Object.assign({}, val, {
-        name: val.name === 'Alex' ? 'Tom' : 'Alex',
-      });
-    });
+    setUser((val) => ({ ...val, name: val.name === 'Alex' ? 'Tom' : 'Alex' }));
   };
   const changeRole = (e) => {
-    setUser((val) => {
-      return Object.assign({}, val, {
-        role: val.role === 'Admin' ? 'Default' : 'Admin',
-      });
-    });
+    setUser((val) => ({
+      ...val,
+      role: val.role === 'Admin' ? 'Default' : 'Admin',
+    }));
   };
 
   const options = {
@@ -61,10 +54,8 @@ const UseMemoDemo1 = (props) => {
   );
 };
 
-export default (props) => {
-  return (
-    <div className="page-demo">
-      <UseMemoDemo1 />
-    </div>
-  );
-};
+export default (props) => (
+  <div className="page-demo">
+    <UseMemoDemo1 />
+  </div>
+);

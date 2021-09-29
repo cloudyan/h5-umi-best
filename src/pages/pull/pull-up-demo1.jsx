@@ -17,15 +17,11 @@ export default () => {
   const [listData, setListData] = useState([]);
   const pageInfo = pageInfoRef.current;
 
-  let isLoading = false;
-
-  useEffect(() => {
-    fetchData(true);
-  }, []);
+  // let isLoading = false;
 
   function fetchData(init) {
     if (init) Object.assign(pageInfoRef.current, pageInfoDefault);
-    let currentNum = pageInfo.pageNum;
+    const currentNum = pageInfo.pageNum;
     pageInfo.loading = true;
     getList({
       pageNum: currentNum,
@@ -46,6 +42,10 @@ export default () => {
         console.log(err);
       });
   }
+
+  useEffect(() => {
+    fetchData(true);
+  }, []);
 
   useEffect(() => {
     const offset = 200;
@@ -87,23 +87,20 @@ export default () => {
     };
   }, []);
 
-  const listMap = listData.map((item, index) => {
-    return (
-      <div className="item pr" key={index}>
-        <ReRender />
-        {item.name}
-      </div>
-    );
-  });
+  const listMap = listData.map((item, index) => (
+    <div className="item pr" key={index}>
+      <ReRender />
+      {item.name}
+    </div>
+  ));
+
+  const domLoading = pageInfo.loading ? <p>正在加载中...</p> : null;
+  const domMore = pageInfo.dataOver ? <p>没有更多数据了</p> : domLoading;
 
   return (
     <div className="page-list" ref={elRef}>
       {listMap}
-      {pageInfo.dataOver ? (
-        <p>没有更多数据了</p>
-      ) : pageInfo.loading ? (
-        <p>正在加载中...</p>
-      ) : null}
+      {domMore}
     </div>
   );
 };

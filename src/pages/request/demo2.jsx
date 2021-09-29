@@ -56,7 +56,8 @@ const customReject = (res) => {
     // code = 1 使用自定义错误，拦截掉公共错误处理，否则使用公共错误处理
     console.error('使用自定义错误,不使用公共错误处理', res);
     return promiseWait;
-  } else if (res.code === 2) {
+  }
+  if (res.code === 2) {
     console.error('使用自定义错误,且使用', res);
   }
   console.error('公共错误处理', res);
@@ -92,7 +93,7 @@ function flow2(code = 0) {
 // p3 = p2.customResolveAfter.commonReject
 function flow3(code = 0) {
   const request = function (...rest) {
-    let r = resolve(code).then(commonResolve);
+    const r = resolve(code).then(commonResolve);
 
     // for (let fn of rest) {
     //   if (typeof fn === 'function') {
@@ -133,7 +134,7 @@ function flow4(code = 0) {
       run() {
         let r = resolve(params).then(commonResolve);
 
-        for (let item of this._task) {
+        for (const item of this._task) {
           if (typeof item.task === 'function') {
             r = r[item.key](item.task);
           }

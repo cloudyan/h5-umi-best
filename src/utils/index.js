@@ -1,9 +1,9 @@
-export const sleep = (...rest) =>
-  new Promise((resolve) => setTimeout(resolve, ...rest));
-
 import React, { FC } from 'react';
 import classNames from 'classnames';
 import { assign, assignWith, isUndefined } from 'lodash';
+
+export const sleep = (...rest) =>
+  new Promise((resolve) => setTimeout(resolve, ...rest));
 
 export function withDefaultProps(defaultProps) {
   return function (C) {
@@ -60,7 +60,7 @@ export function withNativeProps(props, element) {
     };
   }
   for (const key in props) {
-    if (!props.hasOwnProperty(key)) continue;
+    if (!{}.hasOwnProperty.call(props, key)) continue;
     if (key.startsWith('data-') || key.startsWith('aria-')) {
       p[key] = props[key];
     }

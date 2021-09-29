@@ -9,6 +9,10 @@ import './index.less';
 // 每当 Provider 的 value 属性发生变化时，所有作为 Provider 后代的消费者都会重新渲染
 // https://reactjs.org/docs/context.html#contextprovider
 // 要停止这种递归重新渲染，可以使用 memo
+
+const AppContext = React.createContext(0);
+AppContext.displayName = 'AppContext';
+
 const ComponentC = (props) => {
   const count = useContext(AppContext);
   return (
@@ -44,9 +48,6 @@ const ContextDemo1 = (props) => {
     </div>
   );
 };
-
-const AppContext = React.createContext(0);
-AppContext.displayName = 'AppContext';
 
 const ComponentC1 = (props) => {
   const count = useContext(AppContext);
