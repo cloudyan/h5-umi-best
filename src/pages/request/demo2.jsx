@@ -144,7 +144,10 @@ function flow4(code = 0) {
   };
 
   // usage:
-  request(code).then(customResolve).catch(customReject).run();
+  request(code)
+    .then(customResolve)
+    .catch(customReject)
+    .run();
 }
 
 const fnObj = {
