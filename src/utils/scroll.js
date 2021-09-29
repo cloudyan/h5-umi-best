@@ -8,17 +8,15 @@ const isServer = false;
 // const docBody = document.body
 
 /**
- * 触发高度
- * 文档总高度 < (滚动条距离顶部高度 + 当前可视的页面高度) + 触发高度
- * scrollHeight < (scrollTop + visibleHeight|clientHeight) + offset
- *
+ * 触发高度 文档总高度 < (滚动条距离顶部高度 + 当前可视的页面高度) + 触发高度 scrollHeight < (scrollTop +
+ * visibleHeight|clientHeight) + offset
  */
 export default {
   /**
-   * const pos = getPageScrollPos()
-   * const reachBottom = pos.pageHeight - (pos.top + pos.height)
+   * Const pos = getPageScrollPos() const reachBottom = pos.pageHeight -
+   * (pos.top + pos.height)
    *
-   * @returns object
+   * @returns Object
    */
   // getPageScrollPos(a = docE, b = docBody) {
   //   const top = Math.max(a.scrollTop, b.scrollTop)
