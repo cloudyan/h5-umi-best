@@ -5,7 +5,7 @@ const { NODE_ENV, UI_RUNTIME_ENV } = process.env;
 const __DEV__ = NODE_ENV === 'development';
 
 const openCdn = false; // ['sit', 'pre', 'prod'].includes(UI_RUNTIME_ENV);
-const cdnDomain = openCdn ? `https://static.huanbeiloan.com/` : `/`;
+const cdnDomain = openCdn ? `https://static.xxx.com/` : `/`;
 
 export default defineConfig({
   proxy: {
