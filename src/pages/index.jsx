@@ -92,6 +92,9 @@ export default function IndexPage() {
           <a className="btn" href="/hooks/use-reducer/demo1">
             <button>useReducer demo1</button>
           </a>
+          <a className="btn" href="/hooks/use-ref/demo1">
+            <button>useRef demo1</button>
+          </a>
         </div>
         <h3>request</h3>
         <div className="content flex">

@@ -12,17 +12,6 @@
     "lint:prettier": "prettier --check 'src/**/*'",
     "lint:prettier:fix": "prettier -c --write 'src/**/*.{js,jsx,ts,tsx,less,md,json}' && git diff && prettier --version"
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.{js,jsx,less,md,json}": [
-      "prettier --write"
-    ],
-    "*.ts?(x)": [
-      "prettier --parser=typescript --write"
-    ]
-  },
   "dependencies": {
     "ahooks": "2.10.9",
     "classnames": "2.3.1",

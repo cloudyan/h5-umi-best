@@ -81,6 +81,10 @@ export default defineConfig({
       component: '@/pages/hooks/use-reducer/demo1',
     },
     {
+      path: '/hooks/use-ref/demo1',
+      component: '@/pages/hooks/use-ref/demo1',
+    },
+    {
       path: '/request/demo1',
       component: '@/pages/request/demo1',
     },

@@ -4,6 +4,7 @@
 
 import config from '@/config';
 import errorHandler from '@/utils/error-handler';
+import { sleep } from './utils';
 
 const logger = async (ctx, next) => {
   console.log('before');
@@ -11,6 +12,12 @@ const logger = async (ctx, next) => {
   console.log(ctx);
   console.log('after');
 };
+
+(async () => {
+  await sleep(2000, {data: 1}).then(res => {
+    console.log(res)
+  })
+})();
 
 // 使用app.ts配置RequestConfig 就不能使用extend来配置
 // 不然 errorConfig.adaptor 不会起作用
@@ -49,3 +56,14 @@ export const request = {
   requestInterceptors: [],
   responseInterceptors: [],
 };
+
+// 渲染之前做处理
+export function render(oldRender) {
+  sleep(2000).then(res => {
+    oldRender()
+  });
+}
+// export function rootContainer(container) {
+
+//   return React.createElement(ThemeProvider, null, container);
+// }
