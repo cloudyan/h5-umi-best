@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './index.less';
 
 export default function IndexPage() {
+  useEffect(() => {
+    console.log(1);
+    return () => {};
+  }, []);
+
   return (
     <>
       <div className="page-demo page-index">

@@ -11,7 +11,14 @@ const PropsDemo1 = (props) => {
   const [style, setStyle] = useState({ color: 'red' });
   const [name, setName] = useState('Cloud');
 
+  let mark = 1;
+
   const onClick = (e) => {
+    console.log(mark);
+    if (mark === 1) {
+      mark = 0;
+    }
+    console.log(mark);
     // 因为是引用数据类型
     setStyle({ color: 'red' });
   };
